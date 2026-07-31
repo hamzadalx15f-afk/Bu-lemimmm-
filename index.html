@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ Buğlem ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#090514,#1b0933,#05010d);
+font-family:Arial,sans-serif;
+}
+
+.photo{
+position:relative;
+z-index:5;
+animation:wave 4s ease-in-out infinite;
+}
+
+.photo img{
+width:320px;
+max-width:85vw;
+border-radius:25px;
+border:5px solid #ff5ea8;
+box-shadow:0 0 30px #ff5ea8,
+0 0 60px #ff1493;
+}
+
+@keyframes wave{
+0%{transform:scale(1) rotate(-1deg);}
+25%{transform:scale(1.03) rotate(1deg);}
+50%{transform:scale(1.06);}
+75%{transform:scale(1.03) rotate(-1deg);}
+100%{transform:scale(1);}
+}
+
+.heart{
+position:absolute;
+bottom:-50px;
+font-size:30px;
+animation:fly linear forwards;
+pointer-events:none;
+}
+
+@keyframes fly{
+0%{
+transform:translateY(0) scale(.7);
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) scale(1.3);
+opacity:0;
+}
+}
+
+.title{
+position:absolute;
+top:40px;
+width:100%;
+text-align:center;
+font-size:40px;
+font-weight:bold;
+color:white;
+text-shadow:0 0 15px hotpink;
+z-index:5;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="title">💖 İyi ki doğdun hayatım anlamı💖</div>
+
+<div class="photo">
+<img src="fotograf.png">
+</div>
+
+<audio id="music" loop>
+<source src="muzik.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const emojis=[
+"💗","💘","💓","💕","💝","💖","💞","🥰"
+];
+
+function createHeart(){
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*30)+"px";
+
+h.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.remove();
+},8000);
+
+}
+
+setInterval(createHeart,220);
+
+let started=false;
+
+document.body.addEventListener("click",()=>{
+
+if(started) return;
+
+started=true;
+
+document.getElementById("music").play();
+
+});
+
+</script>
+
+</body>
+</html>
